@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+
+    <bean id="beanPostProcessor" class="config.TicketsPostProcessor" />
+    <bean id="writter" class="util.Writter"/>
+
+    <!-- autowiring by constructor -->
+    <bean id="bookingFacade" class="facade.impl.BookingFacadeImpl" autowire="constructor" />
+    <context:annotation-config />
+
+    <bean id="ticketService" class="service.impl.TicketServiceImpl"/>
+    <!-- Definition for ticketRepository bean -->
+    <bean id = "ticketRepository" class = "repository.impl.TicketRepositoryImpl"/>
+    <bean id="userService" class="service.impl.UserServiceImpl" />
+    <bean id="userRepository" class="repository.impl.UserRepositoryImpl"/>
+    <bean id="eventService" class="service.impl.EventServiceImpl" />
+    <bean id="eventRepository" class="repository.impl.EventRepositoryImpl"/>
+
+
+</beans>
