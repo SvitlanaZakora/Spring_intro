@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Employee</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2" align="center">
+
+    <h3>Ticket List</h3>
+
+    <a th:href="@{/getBookedTicketsReport/{userId}(userId=*{userId})}" class="btn btn-primary btn-sm mb-3" >Save PDF</a>
+    <table style="width:80%" border="1"
+           class = "table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Event</th>
+            <th>User</th>
+            <th>Category</th>
+            <th>Place</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="ticket:${allbookedtickets}">
+            <td th:text="${ticket.eventId}"></td>
+            <td th:text="${ticket.userId}"></td>
+            <td th:text="${ticket.category}"></td>
+            <td th:text="${ticket.place}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/updateTicketsFromXml/{userId}(userId=*{userId})}" class="btn btn-primary btn-sm mb-3" >Update tickets with XML</a>
+</div>
+</body>
+</html>
