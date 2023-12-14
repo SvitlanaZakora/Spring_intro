@@ -1,15 +1,17 @@
 package app.service;
 
 import app.model.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public interface UserService {
 
-    User getUserById(long userId);
+    Optional<User> getUserById(long userId);
     User getUserByEmail(String email);
     List<User> getUsersByName(String name);
     User createUser(User user);
-    User updateUser(User user);
-    boolean deleteUser(long userId);
+    void deleteUser(long userId);
 }

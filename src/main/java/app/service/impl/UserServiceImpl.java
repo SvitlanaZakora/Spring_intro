@@ -7,8 +7,7 @@ import app.service.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static java.lang.String.valueOf;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -17,32 +16,27 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User getUserById(long userId) {
-        return userRepository.getUser(valueOf(userId));
+    public Optional<User> getUserById(long userId) {
+        return userRepository.findById(userId);
     }
 
     @Override
     public User getUserByEmail(String email) {
-        return userRepository.getUserByEmail(email);
+        return userRepository.findByEmail(email);
     }
 
     @Override
     public List<User> getUsersByName(String name) {
-        return userRepository.getUsersByName(name);
+        return userRepository.findByName(name);
     }
 
     @Override
     public User createUser(User user) {
-        return userRepository.addUser(user);
+        return userRepository.save(user);
     }
 
     @Override
-    public User updateUser(User user) {
-        return userRepository.updateUser(user);
-    }
-
-    @Override
-    public boolean deleteUser(long userId) {
-        return userRepository.deleteUser(valueOf(userId));
+    public void deleteUser(long userId) {
+        userRepository.deleteById(userId);
     }
 }

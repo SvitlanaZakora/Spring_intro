@@ -1,18 +1,14 @@
 package app.repository;
 
 import app.model.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
-public interface UserRepository {
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
 
-    User addUser(final User user);
-    User getUser(final String id);
-    User getUserByEmail(final String email);
-    User updateUser(final User user);
-    List<User> getUsersByName(final String name);
-    boolean deleteUser(final String id);
-    List<User> getAllUsers();
-    void setUsers(Map<String, User> users);
+    User findByEmail(String email);
+    List<User> findByName(String name);
 }
